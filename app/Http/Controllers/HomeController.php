@@ -25,4 +25,21 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function propiedades(){
+        return view('propiedades');
+    }
+
+    public function actions(){
+        return view('actions');
+    }
+
+    public function magicActions(){
+        return view('magic-actions');
+    }
+
+    public function componentesAnidados(){
+        return view('componentesAnidados');
+    }
+
 }

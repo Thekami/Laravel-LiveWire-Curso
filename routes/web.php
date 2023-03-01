@@ -22,3 +22,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/propiedades', [HomeController::class, 'propiedades'])->name('propiedades');
+Route::get('/actions', [HomeController::class, 'actions'])->name('actions');
+Route::get('/magic-actions', [HomeController::class, 'magicActions'])->name('actions2');
+Route::get('/componentes-anidados', [HomeController::class, 'componentesAnidados'])->name('anidados');
