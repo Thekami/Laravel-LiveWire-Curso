@@ -54,6 +54,9 @@
                                     <a class="dropdown-item" href="{{ route('anidados') }}">
                                         Componentes Anidados
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('eventos') }}">
+                                        Eventos
+                                    </a>
                                 </div>
                             </li>
                         @endguest
@@ -103,8 +106,27 @@
         </main>
     </div>
 
-    @yield('scripts')
+    @livewireScripts 
 
-    @livewireScripts
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    {{-- @vite('resources/js/main.js') --}}
+    <script>
+        function SweetAlert(title, text, icon, button){
+            Swal.fire({
+                title: title,
+                text: text,
+                icon: icon,
+                confirmButtonText: button,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                toast: false
+            })
+
+            // icon = success, error, warning, info, question
+        };
+    </script>
+    @yield('scripts')
 </body>
 </html>

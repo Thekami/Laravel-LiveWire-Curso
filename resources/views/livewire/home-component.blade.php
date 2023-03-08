@@ -11,6 +11,7 @@
                     <a href="{{ route('actions') }}" class="list-group-item list-group-item-action">Actions</a>
                     <a href="{{ route('actions2') }}" class="list-group-item list-group-item-action">Magic Actions</a>
                     <a href="{{ route('anidados') }}" class="list-group-item list-group-item-action">Componentes Anidados</a>
+                    <a href="{{ route('eventos') }}" class="list-group-item list-group-item-action">Eventos</a>
                   </div>
 
             </div>

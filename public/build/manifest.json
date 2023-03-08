@@ -4,6 +4,16 @@
     "isEntry": true,
     "src": "resources/js/app.js"
   },
+  "resources/js/eventos.js": {
+    "file": "assets/eventos-ce17603a.js",
+    "isEntry": true,
+    "src": "resources/js/eventos.js"
+  },
+  "resources/js/main.js": {
+    "file": "assets/main-4ed993c7.js",
+    "isEntry": true,
+    "src": "resources/js/main.js"
+  },
   "resources/sass/app.scss": {
     "file": "assets/app-67dcdfd2.css",
     "isEntry": true,

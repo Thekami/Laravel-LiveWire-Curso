@@ -26,3 +26,6 @@ Route::get('/propiedades', [HomeController::class, 'propiedades'])->name('propie
 Route::get('/actions', [HomeController::class, 'actions'])->name('actions');
 Route::get('/magic-actions', [HomeController::class, 'magicActions'])->name('actions2');
 Route::get('/componentes-anidados', [HomeController::class, 'componentesAnidados'])->name('anidados');
+Route::get('/eventos', [HomeController::class, 'eventos'])->name('eventos');
+
+Route::get('/producto.index');

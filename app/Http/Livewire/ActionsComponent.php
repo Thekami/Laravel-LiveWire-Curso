@@ -12,7 +12,6 @@ class ActionsComponent extends Component
     public function mount(){
       $this->title = "Actions";
     }
-
     public function add($param)
     {
         return $this->contador += $param;

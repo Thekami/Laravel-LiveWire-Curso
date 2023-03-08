@@ -42,4 +42,8 @@ class HomeController extends Controller
         return view('componentesAnidados');
     }
 
+    public function eventos(){
+        return view('eventos');
+    }
+
 }
