@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Producto;
 
 use App\Models\Producto;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -12,11 +13,19 @@ class Index extends Component
     protected $paginationTheme = 'bootstrap';
     public $title;
     public $search = '';
-    public $pagina = 5;
+    public $pagina = 3;
+
+    protected $queryString = ['search'];
 
     public function updatingSearch()
     {
         $this->resetPage();
+    }
+
+    public function mount(){
+        if (is_null(Auth::user())) {
+            return redirect()->route('home');
+        }
     }
     public function render()
     {

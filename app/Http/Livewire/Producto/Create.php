@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Producto;
 
 use App\Models\Producto;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Create extends Component
@@ -28,6 +29,12 @@ class Create extends Component
         'precio.numeric' => 'El campo precio solo acepta números.',
         'precio.min' => 'El campo precio no debe ser menor a 0.',
     ];
+
+    public function mount(){
+        if (is_null(Auth::user())) {
+            return redirect()->route('home');
+        }
+    }
     public function render()
     {
         $this->title = "Nuevo producto";

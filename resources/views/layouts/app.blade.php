@@ -8,7 +8,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @yield('title')
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    @if(isset($title))
+        <title>{{ $title }}</title> 
+    @else
+        <title>{{ config('app.name', 'Laravel') }}</title>
+    @endif
+    {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
     {{-- <title>{{ $title }}</title> --}}
 
     <!-- Fonts -->

@@ -28,6 +28,7 @@ Route::get('/magic-actions', [HomeController::class, 'magicActions'])->name('act
 Route::get('/componentes-anidados', [HomeController::class, 'componentesAnidados'])->name('anidados');
 Route::get('/eventos', [HomeController::class, 'eventos'])->name('eventos');
 
+Route::get('/producto', App\Http\Livewire\Producto\Index::class);
 Route::get('/producto/index', App\Http\Livewire\Producto\Index::class)->name('producto.index');
 Route::get('/producto/create', App\Http\Livewire\Producto\create::class)->name('producto.create');
 //Route::get('/producto/index', [IndexComponent::class, 'mount']);

@@ -11,7 +11,7 @@
                 
                     <div class="card-body">
 
-                        <input type="text" placeholder="Buscar.." class="form-control col-6 mb-3" wire:model="search">
+                        <input type="text" placeholder="Buscar por cantidad.." class="form-control col-6 mb-3" wire:model="search">
 
                         @if(session('success') != null)
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
