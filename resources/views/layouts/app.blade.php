@@ -8,7 +8,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @yield('title')
-    {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
+    <title>{{ config('app.name', 'Laravel') }}</title>
+    {{-- <title>{{ $title }}</title> --}}
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -59,6 +60,9 @@
                                     </a>
                                 </div>
                             </li>
+                            <a class="nav-link" href="{{ route('producto.index') }}">
+                                Productos
+                            </a>
                         @endguest
                     </ul>
 
