@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Producto;
 
+use App\Models\Bitacora;
 use App\Models\Producto;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -52,9 +53,16 @@ class Create extends Component
     public function save()
     {
         $validarCampos = $this->validate();
-        Producto::create($validarCampos);
 
-        return redirect()->route('producto.index')->with('success', 'Producto guardado exitosamente');
+        try {
+            Producto::create($validarCampos);
+            return redirect()->route('producto.index')->with('success', 'Producto guardado exitosamente');
+        } catch (\Throwable $error) {
+            // Avisar por JS de un error inesperado;
+            $Bitacora = new Bitacora();
+            $Bitacora->saveBitacora(Auth::id(), $this->title, $error);
+            dd($error);
+        }
 
         // $this->validate();
         // Producto::create([

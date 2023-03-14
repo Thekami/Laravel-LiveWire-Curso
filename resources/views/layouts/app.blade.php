@@ -65,8 +65,11 @@
                                     </a>
                                 </div>
                             </li>
-                            <a class="nav-link" href="{{ route('producto.index') }}">
+                            <a class="nav-link" href="{{ route('producto') }}">
                                 Productos
+                            </a>
+                            <a class="nav-link" href="{{ route('file') }}">
+                                Archivos
                             </a>
                         @endguest
                     </ul>

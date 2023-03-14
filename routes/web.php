@@ -28,7 +28,10 @@ Route::get('/magic-actions', [HomeController::class, 'magicActions'])->name('act
 Route::get('/componentes-anidados', [HomeController::class, 'componentesAnidados'])->name('anidados');
 Route::get('/eventos', [HomeController::class, 'eventos'])->name('eventos');
 
-Route::get('/producto', App\Http\Livewire\Producto\Index::class);
+Route::get('/producto', App\Http\Livewire\Producto\Index::class)->name('producto');
 Route::get('/producto/index', App\Http\Livewire\Producto\Index::class)->name('producto.index');
 Route::get('/producto/create', App\Http\Livewire\Producto\create::class)->name('producto.create');
-//Route::get('/producto/index', [IndexComponent::class, 'mount']);
+
+Route::get('/file', App\Http\Livewire\File\Index::class)->name('file');
+Route::get('/file/index', App\Http\Livewire\File\Index::class)->name('file.index');
+Route::get('/file/create', App\Http\Livewire\File\create::class)->name('file.create');
