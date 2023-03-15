@@ -12,16 +12,17 @@ class Create extends Component
 {
     use WithFileUploads;
 
-    public $file;
+    public $files = [];
     public $title;
 
     protected $rules = [
-        'file' => 'required|mimes:png,jpg,jpeg,pdf'
+        'files.*' => ['required', 'max:1024', 'mimes:png,jpg,jpeg,pdf']
     ];
 
     protected $messages = [
-        'file.required' => 'El campo file es obligatorio',
-        'file.mimes' => 'Los tipos de archivos permitodos son: JPG, PNG, JPEG y PDF'
+        'files.*.required' => 'El campo file es obligatorio',
+        'files.*.mimes' => 'Los tipos de archivos permitodos son: JPG, PNG, JPEG y PDF',
+        'files.*.max' => 'El tamaño máximo permitido para el archivo es de 1MB'
     ];
     public function mount()
     {
@@ -37,18 +38,26 @@ class Create extends Component
             ->section('content');
     }
 
+    // public function updatedPhoto()
+    // {
+    //     $this->validate();
+    // }
+
     public function save()
     {
         $this->validate();
-        
-        try {
-            $myFile = new File();
-            $myFile->nombre = $this->file->getClientOriginalName();
-            $myFile->extencion = $this->file->extension();
-            $myFile->ruta = 'storage/'.$this->file->store('files', 'public');
-            $myFile->save();
 
-            return redirect()->route('file');
+        try {
+
+            foreach ($this->files as $file) {
+                $myFile = new File();
+                $myFile->nombre = $file->getClientOriginalName();
+                $myFile->extencion = $file->extension();
+                $myFile->ruta = 'storage/' . $file->store('files', 'public');
+                $myFile->save();
+            }
+
+            return redirect()->route('file')->with('success', 'Archivo(s) guardado exitosamente');
 
         } catch (\Throwable $error) {
             // Avisar por JS de un error inesperado;
@@ -56,6 +65,6 @@ class Create extends Component
             $Bitacora->saveBitacora(Auth::id(), $this->title, $error);
             dd($error);
         }
-        
+
     }
 }

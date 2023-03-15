@@ -12,9 +12,22 @@
 
               <form wire:submit.prevent="save">
 
-                <div class="mb-3">
-                  @error('file') <span class="text-danger">{{ $message }}</span> @enderror
-                  <input class="form-control" wire:model="file" type="file" id="formFile">
+                <div class="form-group mb-3">
+                  @error('files.*') <span class="text-danger">{{ $message }}</span> @enderror
+                  <input class="form-control" wire:model="files" type="file" id="formFile" multiple>
+
+                  @if($files)
+                    <h3 class="mt-2">Previsualización de imagen</h3>
+                    @foreach ($files as $file)
+                      
+                        @if($file->extension() != 'pdf')
+                          <img src="{{ asset($file->temporaryUrl()) }}" alt="" width="200" height="200" class="img-fluid">
+                          {{-- <span>Imagen {{ $file->hashName() }}</span> --}}
+                        @endif
+                      
+                    @endforeach
+                  @endif
+                  
                 </div>
 
                 <button type="submit" class="btn btn-primary">Guardar</button>
