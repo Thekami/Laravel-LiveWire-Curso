@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Producto;
 
 use App\Models\Bitacora;
 use App\Models\Producto;
+use App\Models\Categoria;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -13,11 +14,14 @@ class Create extends Component
     public $precio;
     public $cantidad;
     public $title;
+    public $categorias = [];
+    public $categoria;
 
     protected $rules = [
         'nombre' => 'required|min:5',
         'cantidad' => 'required|numeric|min:0',
-        'precio' => 'required|numeric|min:0'
+        'precio' => 'required|numeric|min:0',
+        'categoria' => 'required'
     ];
 
     protected $messages = [
@@ -29,12 +33,15 @@ class Create extends Component
         'precio.required' => 'El campo precio es obligatorio.',
         'precio.numeric' => 'El campo precio solo acepta números.',
         'precio.min' => 'El campo precio no debe ser menor a 0.',
+        'categoria.required' => 'El campo categoria es obligatorio.',
     ];
 
     public function mount(){
         if (is_null(Auth::user())) {
             return redirect()->route('home');
         }
+        $this->categorias = Categoria::all();
+        // dd(Categoria::all());
     }
     public function render()
     {
@@ -55,7 +62,8 @@ class Create extends Component
         $validarCampos = $this->validate();
 
         try {
-            Producto::create($validarCampos);
+            $datos = array_replace($validarCampos, array("categoria_id" => $this->categoria));
+            Producto::create($datos);
             return redirect()->route('producto.index')->with('success', 'Producto guardado exitosamente');
         } catch (\Throwable $error) {
             // Avisar por JS de un error inesperado;
@@ -63,7 +71,7 @@ class Create extends Component
             $Bitacora->saveBitacora(Auth::id(), $this->title, $error);
             dd($error);
         }
-
+ 
         // $this->validate();
         // Producto::create([
         //     "nombre" => $this->nombre,

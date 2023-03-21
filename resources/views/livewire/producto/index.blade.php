@@ -29,15 +29,18 @@
                                     <th scope="col">Producto</th>
                                     <th scope="col">Precio</th>
                                     <th scope="col">Cantidad</th>
+                                    <th scope="col">Categoria</th>
                                   </tr>
                                 </thead>
                                 <tbody>
+                                  {{-- {{ dd($productos) }} --}}
                                     @foreach ($productos as $producto)
                                         <tr>
                                             <th>{{ $producto->id }}</th>
                                             <td>{{ $producto->nombre }}</td>
                                             <td>${{ $producto->precio }}</td>
                                             <td>{{ $producto->cantidad }}</td>
+                                            <td>{{ $producto->categoria->nombre }}</td>
                                         </tr>
                                     @endforeach
                                   

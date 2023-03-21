@@ -32,6 +32,18 @@
                   <input type="text" wire:model="cantidad" class="form-control mb-2">
                 </div>
 
+                <div class="form-group mb-2" >
+                  <label for="">Categoria</label>
+                  <span class="text-danger">*</span>
+                  @error('categoria') <span class="text-danger">{{ $message }}</span> @enderror
+                  <select id="select_categoria" wire:model="categoria" class="form-control select2">
+                    <option>Selecciona una categoria</option>
+                    @foreach ($categorias as $cat)
+                    <option value="{{ $cat->id }}">{{ $cat->nombre }}</option>
+                    @endforeach
+                  </select>
+                </div>
+
                 <button type="submit" class="btn btn-primary">Guardar</button>
               </form>
 
@@ -42,3 +54,17 @@
     </div>
   </div>
 </div>
+
+@section('scripts')
+<script>
+  $(document).ready(function() {
+    $('.select2').select2();
+  })
+
+  $(document).on('change', '.select2', function(e){
+    @this.set('categoria',$(this).val())
+
+  });
+
+</script>
+@endsection
