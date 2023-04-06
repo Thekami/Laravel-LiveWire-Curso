@@ -35,3 +35,7 @@ Route::get('/producto/create', App\Http\Livewire\Producto\create::class)->name('
 Route::get('/file', App\Http\Livewire\File\Index::class)->name('file');
 Route::get('/file/index', App\Http\Livewire\File\Index::class)->name('file.index');
 Route::get('/file/create', App\Http\Livewire\File\create::class)->name('file.create');
+
+Route::get('/empleado', App\Http\Livewire\Empleado\Index::class)->name('empleado');
+Route::get('/empleado/index', App\Http\Livewire\Empleado\Index::class)->name('empleado.index');
+Route::get('/empleado/create', App\Http\Livewire\Empleado\create::class)->name('empleado.create');

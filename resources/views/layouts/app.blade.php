@@ -21,6 +21,15 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <style>
+        .btn-xs
+        {
+            padding: 1px 5px !important;
+            font-size: 12px !important;
+            line-height: 1.5 !important;
+            border-radius: 3px !important;
+        }
+    </style>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -72,6 +81,9 @@
                             </a>
                             <a class="nav-link" href="{{ route('file') }}">
                                 Archivos
+                            </a>
+                            <a class="nav-link" href="{{ route('empleado') }}">
+                                Empleados
                             </a>
                         @endguest
                     </ul>

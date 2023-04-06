@@ -31,7 +31,7 @@ class Index extends Component
     {
         $this->title = "Productos";
         return view('livewire.producto.index', [
-            "productos" => Producto::where('cantidad', 'like', '%' . $this->search . '%')->paginate($this->pagina)
+            "productos" => Producto::where('nombre', 'like', '%' . $this->search . '%')->paginate($this->pagina)
         ])
         ->extends('layouts.app', ['title' => 'Productos'])
         ->section('content');
