@@ -16,7 +16,6 @@ class Index extends Component
     public $pagina = 3;
 
     protected $queryString = ['search'];
-
     public function updatingSearch()
     {
         $this->resetPage();

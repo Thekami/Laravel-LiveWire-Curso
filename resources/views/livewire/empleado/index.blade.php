@@ -10,7 +10,6 @@
           </div>
 
           <div class="card-body row">
-
             <div class="form-group col-3">
               <div class="row">
                 <label for="" class="col-auto col-form-label">Mostrando</label>
@@ -26,7 +25,7 @@
 
             </div>
             <div class="form-group col-6" style="position: absolute;left: 50%;">
-              <input type="text" placeholder="Buscar.." class="form-control form-control-sm  mb-3" wire:model="search">
+              <input type="text" placeholder="Buscar.." class="form-control form-control-sm mb-3" wire:model="search">
             </div>
 
             @if(session('success') != null)
@@ -54,19 +53,22 @@
                   </tr>
                 </thead>
                 <tbody>
-
+                  @foreach ($empleados as $empleado)
+                  {{-- {{ dd($empleado) }} --}}
                   <tr>
-                    <th>Juan Garcia</th>
+                    <td>{{ $empleado->nombre }}</td>
                     <td>
-                      <img src="" width="20px" height="20px" alt="">
+                      @if(is_null($empleado->foto))
+                      <img src="{{ asset('img/user.png') }}" width="30px" height="30px" alt="">
+                      @else
+                      <img src="{{ asset($empleado->foto) }}" width="30px" height="30px" alt="">
+                      @endif
                     </td>
-                    <td>123</td>
-                    <td>$10,000</td>
-                    <td>Dr. Miguel Galindo 45</td>
-                    <td>3121506956</td>
-                    <td>
-                      <span class="btn btn-xs btn-success">Activo</span>
-                    </td>
+                    <td>{{ $empleado->codigo }}</td>
+                    <td>${{ $empleado->salario }}</td>
+                    <td>{{ $empleado->direccion }}</td>
+                    <td>{{ $empleado->telefono }}</td>
+                    <td>{{ $empleado->estatus}}</td>
                     <td>
                       <a href="{{ route('empleado.create') }}" class="btn btn-sm btn-primary opciones-tabla" title="Editar">
                         <span class="fa fa-pencil"></span>
@@ -75,32 +77,15 @@
                         <span class="fa fa-trash"></span>
                       </a>
                     </td>
-                  </tr>
+                    <td>
 
-                  {{-- @foreach ($empleados as $empleado)
-                    <tr>
-                      <td>{{ $empleado->nombre }}</td>
-                  <td>
-                    <img src="{{ asset($empleado->ruta) }}" width="20px" height="20px" alt="">
-                  </td>
-                  <td>{{ $empleado->codigo }}</td>
-                  <td>${{ $empleado->salario }}</td>
-                  <td>{{ $empleado->direccion }}</td>
-                  <td>{{ $empleado->telefono }}</td>
-                  <td>{{ $empleado->estatus }}</td>
-                  <td>
-                    <a href="{{ route('empleado.create') }}" class="btn-sm btn-success"><span class="fa fa-pencil"></span></a>
-                    <a href="{{ route('empleado.create') }}" class="btn-sm btn-danger"><span class="fa fa-trash"></span></a>
-                  </td>
-                  <td>
-
-                  </td>
+                    </td>
                   </tr>
-                  @endforeach --}}
+                  @endforeach
 
                 </tbody>
               </table>
-              {{-- {{ $empleados->links() }} --}}
+              {{ $empleados->links('pagination::bootstrap-4') }}
             </div>
           </div>
         </div>
@@ -112,7 +97,8 @@
 
 @section('scripts')
 <script>
-    $(document).ready(function() {
-        $('.opciones-tabla').tooltip();
-    })
+  $(document).ready(function() {
+    $('.opciones-tabla').tooltip();
+  })
+
 </script>

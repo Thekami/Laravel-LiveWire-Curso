@@ -13,6 +13,6 @@ class Empleado extends Model
 
     public function estatus()
     {
-        return $this->belongsTo(EmpleadoEstatus::class, 'estatus');
+        return $this->belongsTo(EmpleadosEstatus::class, 'estatus');
     }
 }
