@@ -85,7 +85,7 @@
 
                 </tbody>
               </table>
-              {{ $empleados->links('pagination::bootstrap-4') }}
+              {{ $empleados->links() }}
             </div>
           </div>
         </div>
@@ -102,3 +102,4 @@
   })
 
 </script>
+@endsection

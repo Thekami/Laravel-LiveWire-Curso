@@ -15,7 +15,10 @@ class Index extends Component
     public $search = '';
     public $pagina = 3;
 
-    protected $queryString = ['search'];
+    protected $queryString = [
+        'search' => ['except' => ''],
+        'page' => ['except' => 1],
+    ];
     public function updatingSearch()
     {
         $this->resetPage();
@@ -30,7 +33,7 @@ class Index extends Component
     {
         $this->title = "Empleados";
         return view('livewire.empleado.index', [
-            "empleados" => Empleado::where('codigo', 'like', '%' . $this->search . '%')->paginate($this->pagina)
+            "empleados" => Empleado::where('nombre', 'like', '%' . $this->search . '%')->paginate($this->pagina)
         ])
         ->extends('layouts.app', ['title' => 'Empleados'])
         ->section('content');
