@@ -138,22 +138,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     
-    {{-- @vite('resources/js/main.js') --}}
-    <script>
-        function SweetAlert(title, text, icon, button){
-            Swal.fire({
-                title: title,
-                text: text,
-                icon: icon,
-                confirmButtonText: button,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                toast: false
-            })
-
-            // icon = success, error, warning, info, question
-        };
-    </script>
     @yield('scripts')
 </body>
 </html>

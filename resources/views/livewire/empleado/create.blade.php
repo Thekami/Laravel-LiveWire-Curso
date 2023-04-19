@@ -15,35 +15,35 @@
                     <label for="">Nombre </label>
                     <span class="text-danger">*</span>
                     @error('nombre') <span class="text-danger">{{ $message }}</span> @enderror
-                    <input type="text" wire:model="nombre" class="form-control mb-2">
+                    <input type="text" wire:model.lazy="nombre" class="form-control mb-2">
                   </div>
   
                   <div class="form-group">
                     <label for="">Codigo</label>
                     <span class="text-danger">*</span>
                     @error('codigo') <span class="text-danger">{{ $message }}</span> @enderror
-                    <input type="text" wire:model="codigo" class="form-control mb-2">
+                    <input type="text" wire:model.lazy="codigo" class="form-control mb-2">
                   </div>
   
                   <div class="form-group">
                     <label for="">Salario</label>
                     <span class="text-danger">*</span>
                     @error('salario') <span class="text-danger">{{ $message }}</span> @enderror
-                    <input type="text" wire:model="salario" class="form-control mb-2">
+                    <input type="text" wire:model.lazy="salario" class="form-control mb-2">
                   </div>
 
                   <div class="form-group">
                     <label for="">Dirección</label>
                     <span class="text-danger">*</span>
                     @error('direccion') <span class="text-danger">{{ $message }}</span> @enderror
-                    <input type="text" wire:model="direccion" class="form-control mb-2">
+                    <input type="text" wire:model.lazy="direccion" class="form-control mb-2">
                   </div>
   
                   <div class="form-group">
                     <label for="">Telefono</label>
                     <span class="text-danger">*</span>
                     @error('telefono') <span class="text-danger">{{ $message }}</span> @enderror
-                    <input type="text" wire:model="telefono" class="form-control mb-2">
+                    <input type="text" wire:model.lazy="telefono" class="form-control mb-2">
                   </div>
 
                   <div class="form-group">
@@ -65,6 +65,6 @@
   </div>
   
   @section('scripts')
-  <script></script>
+
   @endsection
   

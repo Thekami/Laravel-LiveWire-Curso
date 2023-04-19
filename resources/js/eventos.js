@@ -20,3 +20,5 @@ window.addEventListener('show-modal', event => {
 // Livewire.on('show-modal', () => {
 //   $('#myModal').modal('show');
 // })
+
+

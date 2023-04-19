@@ -10,6 +10,7 @@ use Livewire\Component;
 
 class Create extends Component
 {
+    protected $listeners = ['categoriaChanged' => 'actualizarCategoria'];
     public $nombre;
     public $precio;
     public $cantidad;
@@ -35,6 +36,10 @@ class Create extends Component
         'precio.min' => 'El campo precio no debe ser menor a 0.',
         'categoria.required' => 'El campo categoria es obligatorio.',
     ];
+
+    public function actualizarCategoria($value){
+        $this->categoria = $value;
+    }
 
     public function mount(){
         if (is_null(Auth::user())) {

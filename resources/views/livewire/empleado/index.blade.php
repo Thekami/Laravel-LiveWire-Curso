@@ -37,7 +37,6 @@
             </div>
             @endif
 
-
             <div class="table-responsive" style="margin-bottom: 20px">
               <table class="table table-striped">
                 <thead style="border-bottom: black;font: initial;">
@@ -70,12 +69,12 @@
                     <td>{{ $empleado->telefono }}</td>
                     <td>{{ $empleado->estatus}}</td>
                     <td>
-                      <a href="{{ route('empleado.create') }}" class="btn btn-sm btn-primary opciones-tabla" title="Editar">
+                      <button class="btn btn-sm btn-primary opciones-tabla" title="Editar" wire:click="$emitTo('empleado.modal-edit', 'showModalEdit', {{ $empleado->id }})">
                         <span class="fa fa-pencil"></span>
-                      </a>
-                      <a href="{{ route('empleado.create') }}" class="btn btn-sm btn-danger opciones-tabla" title="Eliminar">
+                      </button>
+                      <button wire:click="deleteConfirm({{ $empleado->id }})" class="btn btn-sm btn-danger opciones-tabla" title="Eliminar">
                         <span class="fa fa-trash"></span>
-                      </a>
+                      </button>
                     </td>
                     <td>
 
@@ -93,13 +92,10 @@
     </div>
   </div>
 
+  @livewire('empleado.modal-edit')
+
 </div>
 
 @section('scripts')
-<script>
-  $(document).ready(function() {
-    $('.opciones-tabla').tooltip();
-  })
-
-</script>
+ @vite('resources/js/empleados.js')
 @endsection

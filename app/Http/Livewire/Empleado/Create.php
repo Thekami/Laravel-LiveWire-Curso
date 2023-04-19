@@ -11,6 +11,10 @@ use Livewire\WithFileUploads;
 class Create extends Component
 {
     use WithFileUploads;
+    protected $listeners = [
+        'categoriaChanged' => 'actualizarCategoria', 
+        'sendAlert'
+    ];
     public $title;
     public $nombre;
     public $codigo;
@@ -48,28 +52,21 @@ class Create extends Component
         if (is_null(Auth::user())) {
             return redirect()->route('home');
         }
-        // dd(Categoria::all());
     }
     
-    public function render()
-    {
+    public function render(){
         $this->title = "Nuevo empleado";
         return view('livewire.empleado.create')
             ->extends('layouts.app', ['title' => 'Empleados'])
             ->section('content');
     }
-    public function updated($propertyName)
-    {
+    public function updated($propertyName) {
         $this->validateOnly($propertyName);
     }
 
-    // public function save()
-    // {
-    //     $validarCampos = $this->validate();
-    //     dd($validarCampos);
-    //     Empleado::create($validarCampos);
-        
-    // }
+    public function sendAlert(){
+      $this->dispatchBrowserEvent('alert');
+    }
 
     public function save(){
         $this->validate();
@@ -84,7 +81,7 @@ class Create extends Component
             $myEmpleado->foto = 'storage/' . $this->foto->store('files', 'public');
             $myEmpleado->estatus = $this->estatus;
             $myEmpleado->save();
-            return redirect()->route('empleado.index')->with('success', 'Empleado guardado exitosamente');
+            return redirect()->route('empleado.index')->with('success', 'Empleado creado exitosamente');
         } catch (\Throwable $error) {
             // Avisar por JS de un error inesperado;
             $Bitacora = new Bitacora();
