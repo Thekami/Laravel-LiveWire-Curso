@@ -27,7 +27,7 @@ window.addEventListener('confirm', event =>{
 })
 
 window.addEventListener('alert', event =>{
-  SwalAlert(event.detail.titulo, event.detail.mensaje, event.detail.icon);
+  SwalAlert(event.detail.titulo, event.detail.mensaje, event.detail.icono);
 })
 
 var SwalAlert = function(title, text, icon){

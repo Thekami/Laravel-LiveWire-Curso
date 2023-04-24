@@ -1,0 +1,1 @@
+Livewire.on("success",()=>{SweetAlert("Forma 1","Esta es una forma de escuchar un evento","success","Ok")});window.addEventListener("success2",e=>{SweetAlert(e.detail.title,e.detail.text,e.detail.icon,"OK")});window.addEventListener("show-modal",e=>{$("#myModal").modal("show")});

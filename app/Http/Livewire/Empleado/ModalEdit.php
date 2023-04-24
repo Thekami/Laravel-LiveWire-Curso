@@ -42,7 +42,7 @@ class ModalEdit extends Component
 
     public function mount(Empleado $empleado){
         // $this->empleado = $empleado;
-        $this->empleado = Empleado::where('id', $this->id);
+        // $this->empleado = Empleado::where('id', $this->id);
     }
     public function render()
     {

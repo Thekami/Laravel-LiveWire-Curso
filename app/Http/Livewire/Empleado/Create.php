@@ -11,19 +11,13 @@ use Livewire\WithFileUploads;
 class Create extends Component
 {
     use WithFileUploads;
-    protected $listeners = [
-        'categoriaChanged' => 'actualizarCategoria', 
-        'sendAlert'
+    protected $listeners = ['sendAlert'];
+    public $title, $nombre, $codigo, $salario, $direccion, $telefono, $foto, $estatus = 1;
+    private $error = [
+        "titulo" => "Atención",
+        "mensaje" => "Ha ocurrido un error inesperado, intentelo mas tarde o pongase en contacto con el administrador del sistema",
+        "icono" => "error"
     ];
-    public $title;
-    public $nombre;
-    public $codigo;
-    public $salario;
-    public $direccion;
-    public $telefono;
-    public $foto;
-    public $estatus = 1;
-
     protected $rules =[
         'nombre' => ['required', 'min:3'],
         'codigo' => ['required', 'max:50'],
@@ -69,24 +63,22 @@ class Create extends Component
     }
 
     public function save(){
-        $this->validate();
+        $data = $this->validate();
 
         try {
-            $myEmpleado = new Empleado();
-            $myEmpleado->nombre = $this->nombre;
-            $myEmpleado->codigo = $this->codigo;
-            $myEmpleado->salario = $this->salario;
-            $myEmpleado->direccion = $this->direccion;
-            $myEmpleado->telefono = $this->telefono;
-            $myEmpleado->foto = 'storage/' . $this->foto->store('files', 'public');
-            $myEmpleado->estatus = $this->estatus;
-            $myEmpleado->save();
+            $nuevaFoto = $this->foto ? 'storage/' . $this->foto->store('empleados', 'public') : null;
+
+            Empleado::create(["foto" => $nuevaFoto, "estatus" => $this->estatus] + $data);
+            
             return redirect()->route('empleado.index')->with('success', 'Empleado creado exitosamente');
+       
         } catch (\Throwable $error) {
-            // Avisar por JS de un error inesperado;
+            
+            $this->dispatchBrowserEvent('alert', $this->error);
+
             $Bitacora = new Bitacora();
             $Bitacora->saveBitacora(Auth::id(), $this->title, $error);
-            dd($error);
+
         }
     }
 }

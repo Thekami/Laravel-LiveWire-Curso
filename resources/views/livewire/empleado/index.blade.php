@@ -58,9 +58,9 @@
                     <td>{{ $empleado->nombre }}</td>
                     <td>
                       @if(is_null($empleado->foto))
-                      <img src="{{ asset('img/user.png') }}" width="30px" height="30px" alt="">
+                        <img src="{{ asset('img/user.png') }}" width="30px" height="30px" alt="" class="img-fluid rounded">
                       @else
-                      <img src="{{ asset($empleado->foto) }}" width="30px" height="30px" alt="">
+                        <img src="{{ asset($empleado->foto) }}" width="30px" height="30px" alt="" class="img-fluid rounded">
                       @endif
                     </td>
                     <td>{{ $empleado->codigo }}</td>
@@ -69,11 +69,16 @@
                     <td>{{ $empleado->telefono }}</td>
                     <td>{{ $empleado->estatus}}</td>
                     <td>
-                      <button class="btn btn-sm btn-primary opciones-tabla" title="Editar" wire:click="$emitTo('empleado.modal-edit', 'showModalEdit', {{ $empleado->id }})">
+                      <a class="btn btn-sm btn-primary opciones-tabla" href="{{route('empleado.edit', $empleado)}}" title="Editar">
                         <span class="fa fa-pencil"></span>
-                      </button>
+                      </a>
+                      {{-- <a class="btn btn-sm btn-primary opciones-tabla" href="{{ route('empleado.edit', $empleado->id) }}" title="Editar"> </a> --}}
+
                       <button wire:click="deleteConfirm({{ $empleado->id }})" class="btn btn-sm btn-danger opciones-tabla" title="Eliminar">
                         <span class="fa fa-trash"></span>
+                      </button>
+                      <button class="btn btn-sm opciones-tabla" title="Editar con modal" wire:click="$emitTo('empleado.modal-edit', 'showModalEdit', {{ $empleado->id }})">
+                        <span class="fa fa-pencil"></span>
                       </button>
                     </td>
                     <td>

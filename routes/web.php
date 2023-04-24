@@ -39,3 +39,4 @@ Route::get('/file/create', App\Http\Livewire\File\create::class)->name('file.cre
 Route::get('/empleado', App\Http\Livewire\Empleado\Index::class)->name('empleado');
 Route::get('/empleado/index', App\Http\Livewire\Empleado\Index::class)->name('empleado.index');
 Route::get('/empleado/create', App\Http\Livewire\Empleado\create::class)->name('empleado.create');
+Route::get('/empleado/{empleado}/edit', \App\Http\Livewire\Empleado\Edit::class)->name('empleado.edit');
