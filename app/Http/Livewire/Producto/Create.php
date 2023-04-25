@@ -76,12 +76,5 @@ class Create extends Component
             $Bitacora->saveBitacora(Auth::id(), $this->title, $error);
             dd($error);
         }
- 
-        // $this->validate();
-        // Producto::create([
-        //     "nombre" => $this->nombre,
-        //     "cantidad" => $this->cantidad,
-        //     "precio" => $this->precio,
-        // ]);
     }
 }

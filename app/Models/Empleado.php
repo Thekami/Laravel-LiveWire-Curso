@@ -11,7 +11,7 @@ class Empleado extends Model
 
     protected $fillable = ['nombre', 'codigo', 'salario', 'direccion', 'telefono', 'foto', 'estatus'];
 
-    public function estatus()
+    public function empleado_estatus()
     {
         return $this->belongsTo(EmpleadosEstatus::class, 'estatus');
     }

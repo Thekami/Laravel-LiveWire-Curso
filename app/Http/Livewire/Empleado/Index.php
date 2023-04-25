@@ -34,7 +34,7 @@ class Index extends Component
     public function render(){
         $this->title = "Empleados";
         return view('livewire.empleado.index', [
-            "empleados" => Empleado::with('estatus')->where('nombre', 'like', '%' . $this->search . '%')->paginate($this->pagina)
+            "empleados" => Empleado::with('empleado_estatus')->where('nombre', 'like', '%' . $this->search . '%')->paginate($this->pagina)
         ])
         ->extends('layouts.app', ['title' => 'Empleados'])
         ->section('content');

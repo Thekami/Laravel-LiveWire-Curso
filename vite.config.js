@@ -9,6 +9,7 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/js/eventos.js',
                 'resources/js/empleados.js',
+                'resources/js/productos.js',
             ],
             refresh: true,
         }),

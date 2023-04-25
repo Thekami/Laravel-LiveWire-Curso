@@ -67,7 +67,7 @@
                     <td>${{ $empleado->salario }}</td>
                     <td>{{ $empleado->direccion }}</td>
                     <td>{{ $empleado->telefono }}</td>
-                    <td>{{ $empleado->estatus}}</td>
+                    <td>{{ $empleado->empleado_estatus->nombre}}</td>
                     <td>
                       <a class="btn btn-sm btn-primary opciones-tabla" href="{{route('empleado.edit', $empleado)}}" title="Editar">
                         <span class="fa fa-pencil"></span>
