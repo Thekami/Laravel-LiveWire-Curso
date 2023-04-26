@@ -12,7 +12,7 @@ class Index extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    protected $listeners = ['delete'];
+    protected $listeners = ['delete', 'reloadComponent' => 'render'];
     public $title;
     public $search = '';
     public $pagina = 5;

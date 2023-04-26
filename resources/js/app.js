@@ -27,14 +27,11 @@ window.addEventListener('confirm', event =>{
 })
 
 window.addEventListener('alert', event =>{
-  SwalAlert(event.detail.titulo, event.detail.mensaje, event.detail.icono);
+  Swal.fire({
+    title: event.detail.titulo,
+    text: event.detail.mensaje,
+    icon: event.detail.icono,
+    toast: false
+  });
 })
 
-var SwalAlert = function(title, text, icon){
-  Swal.fire({
-      title: title,
-      text: text,
-      icon: icon,
-      toast: false
-  })
-}

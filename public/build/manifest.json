@@ -1,18 +1,23 @@
 {
   "resources/js/app.js": {
-    "file": "assets/app-7f267023.js",
+    "file": "assets/app-60195145.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
   "resources/js/empleados.js": {
-    "file": "assets/empleados-bfaf7106.js",
+    "file": "assets/empleados-a74e9d67.js",
     "isEntry": true,
     "src": "resources/js/empleados.js"
   },
   "resources/js/eventos.js": {
-    "file": "assets/eventos-ce17603a.js",
+    "file": "assets/eventos-e973f843.js",
     "isEntry": true,
     "src": "resources/js/eventos.js"
+  },
+  "resources/js/productos.js": {
+    "file": "assets/productos-007d2f5d.js",
+    "isEntry": true,
+    "src": "resources/js/productos.js"
   },
   "resources/sass/app.scss": {
     "file": "assets/app-67dcdfd2.css",

@@ -29,7 +29,7 @@ class Edit extends Component
         'empleado.salario' => ['required', 'numeric', 'min:0'],
         'empleado.direccion' => ['required', 'max:255'],
         'empleado.telefono' => ['required', 'max:45'],
-        'empleado.foto' => ['required', 'max:1024']
+        'empleado.foto' => ['required', 'max:1024', 'mimes:png,jpg,jpeg']
     ];
 
     protected $messages = [

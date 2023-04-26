@@ -15,6 +15,7 @@ class ModalEdit extends Component
     protected $listeners = ['showModalEdit'];
     public Empleado $empleado; 
     public $empleadoId;
+    public $foto;
 
     protected $rules =[
         'empleado.nombre' => ['required', 'min:3'],
@@ -22,7 +23,7 @@ class ModalEdit extends Component
         'empleado.salario' => ['required', 'numeric', 'min:0'],
         'empleado.direccion' => ['required', 'max:255'],
         'empleado.telefono' => ['required', 'max:45'],
-        'empleado.foto' => ['required', 'max:1024', 'mimes:png,jpg,jpeg']
+        'foto' => ['required', 'max:1024', 'mimes:png,jpg,jpeg']
     ];
 
     protected $messages = [
@@ -35,24 +36,40 @@ class ModalEdit extends Component
         'empleado.salario.min' => 'El campo salario no debe ser menor a 0.',
         'empleado.telefono.required' => 'El campo telefono es obligatorio.',
         'empleado.telefono.max' => 'El campo telefono debe máximo 45 caracteres.',
-        'empleado.foto.required' => 'El campo file es obligatorio',
-        'empleado.foto.mimes' => 'Los tipos de archivos permitodos son: JPG, PNG, JPEG y PDF',
-        'empleado.foto.max' => 'El tamaño máximo permitido para el archivo es de 1MB'
+        'foto.required' => 'El campo file es obligatorio',
+        'foto.mimes' => 'Los tipos de archivos permitodos son: JPG, PNG, JPEG y PDF',
+        'foto.max' => 'El tamaño máximo permitido para el archivo es de 1MB'
     ];
 
-    public function mount(Empleado $empleado){
+    public function mount(){
         // $this->empleado = $empleado;
         // $this->empleado = Empleado::where('id', $this->id);
+        // $this->empleado = Empleado::find($this->empleadoId);
     }
     public function render()
     {
-        // $this->empleado = Empleado::where('id', $this->id);
+        // $this->empleado = Empleado::find($this->empleadoId);
         return view('livewire.empleado.modal-edit');
     }
 
     public function showModalEdit($id){
-        // dd(Empleado::where('id', $id));
-        $this->empleadoId = $id;
+        $this->empleado = Empleado::find($id);
+        $this->foto = null;
         $this->dispatchBrowserEvent('display-modal-edit');
+    }
+
+    public function edit(){
+
+        $data = $this->validate();
+
+        $nuevaFoto = $this->foto ? 'storage/' . $this->foto->store('empleados', 'public') : null;
+
+        $this->empleado->update(["foto" => $nuevaFoto] + $data);
+
+        $this->dispatchBrowserEvent('close-modal-edit', [
+            "title" => "Felicidades",
+            "text" => "El empleado ha sido actualizado satisfactoriamente",
+            "icon" => "success"
+        ]);
     }
 }

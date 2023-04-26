@@ -5,12 +5,12 @@ Livewire.on('success', () => {
 
 // Otra forma de escuchar un evento que fue ejecutado desde el controlador del componente (EventosComponent)
 window.addEventListener('success2', event => {
-  SweetAlert(
-    event.detail.title,
-    event.detail.text,
-    event.detail.icon,
-    "OK"
-  );
+  Swal.fire({
+    title: event.detail.title,
+    text: event.detail.text,
+    icon: event.detail.icon,
+    toast: false
+  });
 })
 
 window.addEventListener('show-modal', event => {
