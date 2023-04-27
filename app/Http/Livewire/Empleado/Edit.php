@@ -29,7 +29,7 @@ class Edit extends Component
         'empleado.salario' => ['required', 'numeric', 'min:0'],
         'empleado.direccion' => ['required', 'max:255'],
         'empleado.telefono' => ['required', 'max:45'],
-        'empleado.foto' => ['required', 'max:1024', 'mimes:png,jpg,jpeg']
+        'foto' => ['nullable', 'sometimes', 'max:1024', 'mimes:png,jpg,jpeg']
     ];
 
     protected $messages = [
@@ -42,9 +42,9 @@ class Edit extends Component
         'empleado.salario.min' => 'El campo salario no debe ser menor a 0.',
         'empleado.telefono.required' => 'El campo telefono es obligatorio.',
         'empleado.telefono.max' => 'El campo telefono debe máximo 45 caracteres.',
-        'empleado.foto.required' => 'El campo file es obligatorio',
-        // 'empleado.foto.mimes' => 'Los tipos de archivos permitodos son: JPG, PNG, JPEG y PDF',
-        'empleado.foto.max' => 'El tamaño máximo permitido para el archivo es de 1MB'
+        'foto.required' => 'El campo file es obligatorio',
+        'foto.mimes' => 'Los tipos de archivos permitodos son: JPG, PNG, JPEG y PDF',
+        'foto.max' => 'El tamaño máximo permitido para el archivo es de 1MB'
     ];
 
     public function mount(Empleado $empleado){
@@ -73,13 +73,13 @@ class Edit extends Component
     public function edit(){
 
         $data = $this->validate();
-
-        try {
-            
-            $nuevaFoto = $this->foto ? 'storage/' . $this->foto->store('empleados', 'public') : null;
         
-            $this->empleado->update(["foto" => $nuevaFoto] + $data);
+        try {
+
+            $nuevaFoto = $this->foto ? 'storage/' . $this->foto->store('empleados', 'public') : $this->empleado->foto;
     
+            $this->empleado->update(["foto" => $nuevaFoto] + $data);
+
             return redirect()->route('empleado.index')->with('success', 'Empleado actualizado exitosamente');
     
         } catch (\Throwable $error) {
